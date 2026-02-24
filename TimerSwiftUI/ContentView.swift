@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // 1 to 100 numbers
+    let numbers = Array(1...100)
+
+    // 5 columns
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 12), count: 5)
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 12) {
+                ForEach(numbers, id: \.self) { num in
+                    NumberCell(number: num)
+                }
+            }
         }
         .padding()
     }
